@@ -1,4 +1,4 @@
-run = "python3 day4_challenge_calculator.py"
+run = "python3 Day4/day4_challenge_calculator.py"
 
 # The primary language of the repl. There can be others, though!
 language = "python3"
