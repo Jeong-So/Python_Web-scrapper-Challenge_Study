@@ -18,15 +18,19 @@ def extract_jobs(term):
       # print(job_position.string)
       company_name = job.find('h3')
       # print(company_name.string)
+      location = job.find('div', class_="location")
       job_data = {
         'link' : f"https://remoteok.com{link}",
         'company name' : company_name.string.strip('\n'),
-        'job position' : job_position.string.strip('\n')
+        'job position' : job_position.string.strip('\n'),
+        'location' : location.string
       }
       # print(job_data)
       # print()
       results.append(job_data)
-    print(results)
+    for result in results:
+      print(result)
+      print()
   else:
     print("Can't get jobs.")
 

@@ -18,14 +18,14 @@ def extract_wwr_jobs(keyword):
         anchors = post.find_all('a')
         anchor = anchors[1]
         link = anchor['href']  # bs4는 html을 dictionary 형태로 받음
-        company, kind, region = anchor.find_all('span', class_="company")
+        company, kind, location = anchor.find_all('span', class_="company")
         title = anchor.find('span', class_='title')  # find는 결과를 가져옴
-        # print(f" company name : {company.string}\n what kind of job : {kind.string}\n where is the company : {region.string}\n capability : {title.string}") # .string : 태그제외하고 가져옴
+        # print(f" company name : {company.string}\n what kind of job : {kind.string}\n where is the company : {location.string}\n capability : {title.string}") # .string : 태그제외하고 가져옴
         job_data = {
           'link' : f"https://weworkremotely.com{link}",
-          'company' : company.string,
-          'region' : region.string,
-          'position' : title.string
+          'company' : company.string.replace(","," "),
+          'location' : location.string,
+          'position' : title.string.replace(","," ")
         }
         results.append(job_data)
     return results
